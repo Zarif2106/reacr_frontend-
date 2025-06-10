@@ -1,29 +1,27 @@
 import React from 'react';
-import Slider from '../../components/Slider/Slider'; 
-import Card from '../../components/Card/Card';
-import Gallery from '../../components/Gallery/Gallery';
-import styles from './HomePage.module.css';
+import Layout from '../../components/Layout/Layout';
+import Slider from '../../components/Slider/Slider';
+import PortalProducts from '../../components/PortalProducts/PortalProducts';
+import SmartCamera from '../../components/SmartCamera/SmartCamera';
+import MessengerIntegration from '../../components/MessengerIntegration/MessengerIntegration';
+import StoryTime from '../../components/StoryTime/StoryTime';
+import AlexaIntegration from '../../components/AlexaIntegration/AlexaIntegration';
+import PrivacyFeatures from '../../components/PrivacyFeatures/PrivacyFeatures';
+import ProductComparison from '../../components/ProductComparison/ProductComparison';
 
-export const HomePage: React.FC = () => {
+const HomePage: React.FC = () => {
   return (
-    <>
+    <Layout>
       <Slider />
-      
-      <Card
-        title="Каюты"
-        description="Три эксклюзивные и комфортабельные каюты Løvtag - Et, Ro и Ly..."
-        image="/img/1.jpg"
-        isReversed={true}
-      />
-
-      <Gallery images={['/img/im1.jpg', '/img/im2.jpg', '/img/im3.jpg']} />
-
-      <Card
-        title="Лес"
-        description="Три эксклюзивные и комфортабельные каюты Løvtag - Et, Ro и Ly..."
-        image="/img/map.jpg"
-        isReversed={true}
-      />
-    </>
+      <PortalProducts />
+      <SmartCamera />
+      <MessengerIntegration />
+      <StoryTime />
+      <AlexaIntegration />
+      <PrivacyFeatures />
+      <ProductComparison />
+    </Layout>
   );
 };
+
+export default HomePage;

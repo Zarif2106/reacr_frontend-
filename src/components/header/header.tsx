@@ -1,57 +1,41 @@
 import React, { useState } from 'react';
-import './header.module.css';
+import { Link } from 'react-router-dom';
+import styles from './Header.module.css';
 
-const Header = () => {
-  const [isLoginFormVisible, setIsLoginFormVisible] = useState(false);
 
-  const handleLoginClick = () => {
-    setIsLoginFormVisible(true);
-  };
+interface HeaderProps {
+  onLoginClick: () => void;
+}
+
+const Header: React.FC<HeaderProps> = ({ onLoginClick }) => {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   return (
-    <header className="heder">
-      <div className="logo">
-        <img src="styles/img/logo.heder.svg" alt="Логотип" />
-      </div>
+    <header className={styles.header}>
+      <div className={styles.container}>
+        <div className={styles.logo}>
+          <img src="src/assets/images/logo__abz.svg" alt="Portal Logo" />
+        </div>
+        
+        <button 
+          className={styles.mobileMenuButton}
+          onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+        >
+          ☰
+        </button>
 
-      <div className="button__heder">
-        <a className="decaration__heder__button__0" href="#">
-          Продукты
-        </a>
-        <a className="decaration__heder__button" href="#">
-          Функции
-        </a>
-        <a className="decaration__heder__button" href="#">
-          Поддерживать
-        </a>
-      </div>
-
-      <div className="button__heder__1">
-        <button className="decaration__heder__button__1" onClick={handleLoginClick}>
+        <nav className={`${styles.nav} ${mobileMenuOpen ? styles.open : ''}`}>
+          <Link to="/products" className={styles.link}>Продукты</Link>
+          <Link to="/features" className={styles.link}>Функции</Link>
+          <Link to="/support" className={styles.link}>Поддержка</Link>
+          <button className={styles.loginButton} onClick={onLoginClick}>
           Войти
         </button>
+        </nav>
+
+        
       </div>
-
-      {/* Предположим, форма находится здесь или в другом компоненте */}
-      {isLoginFormVisible && (
-        <LoginForm onClose={() => setIsLoginFormVisible(false)} />
-      )}
     </header>
-  );
-};
-
-// Пример простого компонента формы
-const LoginForm = ({ onClose }: { onClose: () => void }) => {
-  return (
-    <div className="login-form">
-      <h2>Форма входа</h2>
-      <form>
-        <input type="text" placeholder="Логин" />
-        <input type="password" placeholder="Пароль" />
-        <button type="submit">Войти</button>
-      </form>
-      <button onClick={onClose}>Закрыть</button>
-    </div>
   );
 };
 

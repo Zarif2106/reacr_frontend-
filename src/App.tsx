@@ -1,32 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import Header from './components/header/header';
-import HomePage from './components/home/home';
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import HomePage from './pages/HomePage/HomePage';
+import './assets/styles/global.css';
 
 const App: React.FC = () => {
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Имитация загрузки
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 2000); // 2 секунды
-
-    return () => clearTimeout(timer);
-  }, []);
-
   return (
-    <div className="app">
-      {isLoading ? (
-        <div className="preloader">Загрузка...</div>
-      ) : (
-        <>
-          <Header />
-          <main>
-            <HomePage />
-          </main>
-        </>
-      )}
-    </div>
+    <Router>
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        {/* Добавьте другие маршруты по мере необходимости */}
+      </Routes>
+    </Router>
   );
 };
 

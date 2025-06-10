@@ -1,0 +1,76 @@
+.card__Partall {
+  display: flex;
+  justify-content: center;
+  max-width: 1264px;
+ 
+ margin-top: 10%;
+  
+  margin: 0 auto;
+  
+}
+
+.partall {
+  width: 304px;
+  height: 587px;
+  margin-top: 18.66px;
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+
+.partall__Tv {
+  background-image: url('../../assets/images/partall__tv.jpg');
+  
+}
+.partall__pllus {
+  background-image: url('../../assets/images/partall__plus.jpg');
+  margin-left: 2%;
+}
+.partall__mini {
+  background-image: url('../../assets/images/partall__mini.jpg');
+  margin-left: 2%;
+}
+.partall__default {
+  background-image: url('../../assets/images/partall.jpg');
+  margin-left: 2%;
+}
+
+.titleBox {
+  margin-top: -70%;
+  padding-left: 95px;
+}
+
+.title {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 24px;
+  line-height: 30px;
+  
+  color: #fff;
+  margin-top: 280%;
+}
+
+.description {
+  font-family: Roboto;
+  font-weight: 500;
+  font-size: 15px;
+  line-height: 21px;
+  text-align: center;
+  padding-left: 20px;
+  
+}
+
+.buttonBox {
+  margin-top: 20px;
+  padding-left: 100px;
+}
+
+.buttonLink {
+  font-family: Roboto;
+  font-weight: 700;
+  font-size: 14px;
+  line-height: 20px;
+  text-align: center;
+  text-decoration: none;
+  color: #fff;
+}
