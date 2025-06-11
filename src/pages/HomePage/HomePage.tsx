@@ -1,7 +1,7 @@
 import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import Slider from '../../components/Slider/Slider';
-import PortalProducts from '../../components/PortalProducts/PortalProducts';
+import CardList from '../../components/CardList/CardList';
 import SmartCamera from '../../components/SmartCamera/SmartCamera';
 import MessengerIntegration from '../../components/MessengerIntegration/MessengerIntegration';
 import StoryTime from '../../components/StoryTime/StoryTime';
@@ -13,7 +13,7 @@ const HomePage: React.FC = () => {
   return (
     <Layout>
       <Slider />
-      <PortalProducts />
+      <CardList />
       <SmartCamera />
       <MessengerIntegration />
       <StoryTime />
