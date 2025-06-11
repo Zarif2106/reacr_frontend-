@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Card from '../PortalProducts/PortalProducts';
 import styles from './CardList.module.css';
 
+
+
 interface Product {
   id: number;
   name: string;
@@ -9,50 +11,32 @@ interface Product {
   imageClass: string;
 }
 
-const products: Product[] = [
-  {
-    id: 1,
-    name: "Portal TV",
-    description: "Умные видеозвонки на самом большом экране вашего дома",
-    imageClass: styles.partall__Tv,
-  },
-  {
-    id: 2,
-    name: "Portal",
-    description: "Умные видеовызовы на 10-дюймовом HD-дисплее",
-    imageClass: styles.partall__default,
-  },
-  {
-    id: 3,
-    name: "Portal+",
-    description: "Умные видеовызовы на HD-дисплее с диагональю 15,6 дюйма",
-    imageClass: styles.partall__pllus,
-  },
-  {
-    id: 4,
-    name: "Portal Mini",
-    description: "Умные видеовызовы на 8-дюймовом HD-дисплее",
-    imageClass: styles.partall__mini,
-  }
-];
-
 const CardList: React.FC = () => {
   const [cards, setCards] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Вместо fetch - просто загружаем статические данные
-    try {
-      // Можно добавить задержку для имитации загрузки, если нужно
-      setTimeout(() => {
-        setCards(products);
+    fetch('https://jsonplaceholder.typicode.com/posts?_limit=4')
+      .then((response) => {
+        if (!response.ok) throw new Error('Ошибка сети');
+        return response.json();
+      })
+      .then((data) => {
+        // Пример маппинга данных под вашу структуру
+        const mappedCards = data.map((item: any) => ({
+          id: item.id,
+          name: `Product #${item.id}`, 
+          description: item.body,
+          imageClass: styles.partall__default, // можно динамически выбирать класс
+        }));
+        setCards(mappedCards);
         setLoading(false);
-      }, 500);
-    } catch (err) {
-      setError("Ошибка загрузки данных");
-      setLoading(false);
-    }
+      })
+      .catch((err) => {
+        setError(err.message);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) return <div>Загрузка...</div>;
