@@ -1,21 +1,21 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Outlet } from 'react-router-dom';
+import Layout from './components/Layout/Layout';
 import HomePage from './pages/HomePage/HomePage';
-
-import './assets/styles/global.css';
+import CardsPage from './pages/CardsPage/CardsPage';
+import NotFoundPage from './pages/NotFoundPage/NotFoundPage';
 
 const App: React.FC = () => {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/" element={<HomePage />}>
-          {/* Встраиваем CardList внутрь HomePage как вложенный маршрут или напрямую */}
-          {/* Если хочешь показывать карточки сразу на главной странице — можно так: */}
-         
+        <Route path="/" element={<Layout />}>
+          <Route index element={<HomePage />} />
+          <Route path="cards" element={<CardsPage />} />
+          <Route path="*" element={<NotFoundPage />} />
         </Route>
-        {/* Добавляй другие маршруты сюда по мере необходимости */}
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 };
 

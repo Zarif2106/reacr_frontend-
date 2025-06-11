@@ -1,27 +1,21 @@
 import React from 'react';
-import Layout from '../../components/Layout/Layout';
-import Slider from '../../components/Slider/Slider';
+import { Link } from 'react-router-dom';
 import CardList from '../../components/CardList/CardList';
-import SmartCamera from '../../components/SmartCamera/SmartCamera';
-import MessengerIntegration from '../../components/MessengerIntegration/MessengerIntegration';
-import StoryTime from '../../components/StoryTime/StoryTime';
-import AlexaIntegration from '../../components/AlexaIntegration/AlexaIntegration';
-import PrivacyFeatures from '../../components/PrivacyFeatures/PrivacyFeatures';
-import ProductComparison from '../../components/ProductComparison/ProductComparison';
 
 const HomePage: React.FC = () => {
   return (
-    <Layout>
-      <Slider />
-      <CardList />
-      <SmartCamera />
-      <MessengerIntegration />
-      <StoryTime />
-      <AlexaIntegration />
-      <PrivacyFeatures />
-      <ProductComparison />
-    </Layout>
+    <div className="home-page">
+      <h1>Добро пожаловать!</h1>
+      <h2>
+        <Link to="/cards">Наши карточки</Link>
+      </h2>
+      <div className="featured-cards">
+        <CardList limit={3} />
+      </div>
+    </div>
   );
 };
 
 export default HomePage;
+
+

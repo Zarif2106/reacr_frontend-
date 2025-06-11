@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import Card from '../PortalProducts/PortalProducts';
+import Card from '../PortalProducts/PortalProducts'; 
 import styles from './CardList.module.css';
 
 interface Product {
@@ -7,6 +7,10 @@ interface Product {
   name: string;
   description: string;
   imageClass: string;
+}
+
+interface CardListProps {
+  limit?: number; // теперь можно передавать лимит
 }
 
 const products: Product[] = [
@@ -36,23 +40,24 @@ const products: Product[] = [
   }
 ];
 
-const CardList: React.FC = () => {
+const CardList: React.FC<CardListProps> = ({ limit = products.length }) => {
   const [cards, setCards] = useState<Product[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    // Вместо fetch - просто загружаем статические данные
-    try {
-      // Можно добавить задержку для имитации загрузки, если нужно
-      setTimeout(() => {
+    const loadCards = async () => {
+      try {
+        await new Promise(resolve => setTimeout(resolve, 500));
         setCards(products);
+      } catch (err) {
+        setError('Ошибка загрузки продуктов');
+      } finally {
         setLoading(false);
-      }, 500);
-    } catch (err) {
-      setError("Ошибка загрузки данных");
-      setLoading(false);
-    }
+      }
+    };
+
+    loadCards();
   }, []);
 
   if (loading) return <div>Загрузка...</div>;
@@ -60,7 +65,7 @@ const CardList: React.FC = () => {
 
   return (
     <section className={styles.card__Partall}>
-      {cards.map((card) => (
+      {cards.slice(0, limit).map((card) => (
         <Card
           key={card.id}
           name={card.name}
